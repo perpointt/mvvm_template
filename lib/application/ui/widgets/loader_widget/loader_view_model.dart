@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:template/application/ui/navigation/main_navigation.dart';
 import 'package:template/domain/services/auth_service.dart';
 
+/// ViewModel для LoaderWidged
+///
+/// С помощью него идет осуществляется проверка сессии пользователя
+///
+/// [context] - используется для навигации
 class LoaderViewModel {
   final BuildContext context;
   final _authService = AuthService();
 
   LoaderViewModel(this.context) {
-    asyncInit();
+    _asyncInit();
   }
 
-  Future<void> asyncInit() async {
-    await checkAuth();
+  Future<void> _asyncInit() async {
+    await _checkAuth();
   }
 
-  Future<void> checkAuth() async {
+  Future<void> _checkAuth() async {
     final isAuth = await _authService.isAuth();
     // TODO
-    final nextScreen = isAuth ? '' : '';
+    // Вместо домашней страницы можно перекидывать на deeplink
+    final nextScreen = isAuth
+        ? MainNavigationRouteNames.homeWidget
+        : MainNavigationRouteNames.loginWidget;
 
     Navigator.of(context).pushReplacementNamed(nextScreen);
   }
