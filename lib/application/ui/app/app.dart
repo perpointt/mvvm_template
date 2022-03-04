@@ -1,28 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:template/application/ui/navigation/main_navigation.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:template/application/ui/navigation/app_navigator.dart';
 import 'package:template/application/ui/themes/app_theme.dart';
 import 'package:template/resources/resources.dart';
 
 class App extends StatelessWidget {
-  final mainNavigation = MainNavigation();
-  App({Key? key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      routes: mainNavigation.routes,
-      supportedLocales: const [
-        Locale('ru', 'RU'),
-      ],
-      theme: AppTheme.light,
-      debugShowCheckedModeBanner: AppConfig.isDebug,
-      initialRoute: MainNavigationRouteNames.loaderWidget,
+    return ScreenUtilInit(
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: () => MaterialApp.router(
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('ru', 'RU'),
+        ],
+        debugShowCheckedModeBanner: AppConfig.isDebug,
+        theme: AppTheme.light,
+        routerDelegate: AppRouter.instance.delegate(),
+        routeInformationProvider: AppRouter.instance.routeInfoProvider(),
+        routeInformationParser: AppRouter.instance.defaultRouteParser(),
+        builder: (context, child) {
+          ScreenUtil.setContext(context);
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: child!,
+          );
+        },
+      ),
     );
   }
 }

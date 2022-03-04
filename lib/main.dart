@@ -7,5 +7,5 @@ void main() async {
 
   AppConfig.init();
 
-  runApp(App());
+  runApp(const App());
 }
