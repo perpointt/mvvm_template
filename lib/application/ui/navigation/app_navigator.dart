@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:template/application/ui/navigation/guards/guards.dart';
 import 'package:template/application/ui/screens/home_widget/home_screen.dart';
 import 'package:template/application/ui/screens/home_widget/home_view_model.dart';
@@ -118,6 +119,18 @@ abstract class AppRouter {
       barrierColor: Colors.white.withOpacity(0.5),
       barrierDismissible: false,
       dialog: const Loader(),
+    );
+  }
+
+  static ToastFuture toast(
+    String title, {
+    EdgeInsets padding = const EdgeInsets.only(right: 16),
+  }) {
+    return showToastWidget(
+      Container(),
+      handleTouch: true,
+      dismissOtherToast: true,
+      duration: const Duration(seconds: 3),
     );
   }
 }

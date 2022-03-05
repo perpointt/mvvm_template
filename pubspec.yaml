@@ -18,9 +18,8 @@ dependencies:
 
   # UI
   cupertino_icons: ^1.0.2
-
-  # HELPERS
   flutter_screenutil: ^5.3.1
+  oktoast: ^3.1.5
 
   # GENERATORS
   auto_route: ^3.2.4

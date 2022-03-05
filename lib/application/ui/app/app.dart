@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:template/application/ui/navigation/app_navigator.dart';
 import 'package:template/application/ui/themes/app_theme.dart';
 import 'package:template/resources/resources.dart';
@@ -44,9 +45,11 @@ class _AppObserver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MediaQuery(
-      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-      child: child,
+    return OKToast(
+      child: MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+        child: child,
+      ),
     );
   }
 }
