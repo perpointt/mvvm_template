@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
             CupertinoButton(
               onPressed: () =>
                   AppRouter.instance.pushNamed(AppRouteNames.second),
-              child: Text('not-found'),
+              child: const Text('Go to second screen'),
             )
           ],
         ),

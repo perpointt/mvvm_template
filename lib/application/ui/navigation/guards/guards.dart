@@ -6,3 +6,4 @@ import 'package:template/domain/services/auth_service.dart';
 
 part 'app_guard.dart';
 part 'auth_guard.dart';
+part 'args_guard.dart';

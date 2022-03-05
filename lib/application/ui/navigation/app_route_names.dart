@@ -12,5 +12,5 @@ abstract class AppRouteNames {
 
   static const notFound = '/404';
 
-  List<String> get authWidgets => [login, register, resetPassword];
+  List<String> get authenticationNames => [login, register, resetPassword];
 }

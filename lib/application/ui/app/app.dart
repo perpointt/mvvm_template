@@ -29,12 +29,24 @@ class App extends StatelessWidget {
         routeInformationParser: AppRouter.instance.defaultRouteParser(),
         builder: (context, child) {
           ScreenUtil.setContext(context);
-          return MediaQuery(
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            child: child!,
+          return _AppObserver(
+            child: child ?? Container(),
           );
         },
       ),
+    );
+  }
+}
+
+class _AppObserver extends StatelessWidget {
+  final Widget child;
+  const _AppObserver({Key? key, required this.child}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+      child: child,
     );
   }
 }
