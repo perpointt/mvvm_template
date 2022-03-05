@@ -1,5 +1,8 @@
 part of 'app_navigator.dart';
 
+/// Класс для генерации экранов
+/// Если в приложении появляется новая страница, необходимо добавить ее сюда
+/// С его помощью удобно отделять верстку от ViewModel
 abstract class ScreenFactory {
   static const loginScreen = LoginScreen;
   static const homeScreen = _HomeScreen;
